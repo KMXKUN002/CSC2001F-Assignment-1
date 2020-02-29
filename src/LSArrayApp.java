@@ -23,16 +23,36 @@ public class LSArrayApp {
          }
          
          if (args.length == 0) {
-            for (int i = 0; i < length; i ++) {
-               System.out.println (lsArray[i]);
-            }
+            printAllAreas (lsArray, length);
          }
          else {
-            
+            String parameters = args[0] + "_" + args[1] + "_" + args[2];
+            printAreas (lsArray, length, parameters);
          }
       }
       catch (IOException e) {
          e.printStackTrace();
       }
 	}
+   
+   public static void printAllAreas (LoadSheddingUnit[] array, int length) {
+      for (int i = 0; i < length; i ++) {
+         System.out.println (array[i]);
+      }
+   }
+   
+   public static void printAreas (LoadSheddingUnit[] array, int length, String parameters) {
+      boolean foundFlag = false;
+      for (int i = 0; i < length; i++) {
+         if (array[i].matches (parameters)) {
+            System.out.println ("Areas " + array[i].getAreas());
+            foundFlag = true;
+            break;
+         }
+      }
+      
+      if (!foundFlag) {
+         System.out.println ("Areas not found");
+      }
+   }
 }

@@ -4,18 +4,28 @@
 
 public class LoadSheddingUnit {
    protected int day;
-   protected String raw;
+   protected String parameters;
+   protected String areas;
    
    public LoadSheddingUnit() {
    }
    
-   public LoadSheddingUnit(String r) {
-      raw = r;
-      day = Integer.parseInt (r.substring (2, r.indexOf('_', 2)));
+   public LoadSheddingUnit(String raw) {
+      parameters = raw.substring (0, raw.indexOf(' '));
+      day = Integer.parseInt (raw.substring (2, raw.indexOf('_', 2)));
+      areas = raw.substring (raw.indexOf(' ') + 1);
+   }
+   
+   public boolean matches (String p) {
+      if (p.equals (parameters)) {
+         return true;
+      }
+      
+      return false;
    }
    
    public int compareTo (LoadSheddingUnit unit) {
-      if (raw == unit.getRaw()) {
+      if (parameters.equals(unit.getParameters())) {
          return 0;
       }
       
@@ -30,12 +40,16 @@ public class LoadSheddingUnit {
       return day;
    }
       
-   public String getRaw () {
-      return raw;
+   public String getParameters () {
+      return parameters;
+   }
+   
+   public String getAreas () {
+      return areas;
    }
    
    public String toString () {
-      String[] reader = raw.split ("_");
-      return "Stage " + reader[0] + " - Day " + String.format ("%2d", day) + " - Start Hour " + reader[2].substring(0, 2) + " - Areas " + reader[2].substring(3);
+      String[] reader = parameters.split ("_");
+      return "Stage " + reader[0] + " - Day " + String.format ("%2d", day) + " - Start Hour " + reader[2] + " - Areas " + areas;
    }
 }
