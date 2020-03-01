@@ -26,8 +26,13 @@ public class LSArrayApp {
             printAllAreas (lsArray, length);
          }
          else {
-            String parameters = args[0] + "_" + args[1] + "_" + args[2];
-            printAreas (lsArray, length, parameters);
+            try {
+               String parameters = args[0] + "_" + args[1] + "_" + args[2];
+               printAreas (lsArray, length, parameters);
+            }
+            catch (ArrayIndexOutOfBoundsException f) {
+               System.out.println ("Not enough parameters.");
+            }
          }
       }
       catch (IOException e) {
