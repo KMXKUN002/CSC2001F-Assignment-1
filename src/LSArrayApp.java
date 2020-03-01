@@ -9,7 +9,7 @@ public class LSArrayApp {
    static int opCount = 0;
 
 	public static void main	( String	[]	args ){
-      long systemStartTime = System.currentTimeMillis();
+      long systemStartTime = System.currentTimeMillis(); //Time measured from here
    
       try {
       
@@ -45,7 +45,7 @@ public class LSArrayApp {
          
          System.out.println ("n = " + length);
          
-         long timeElapsed = System.currentTimeMillis() - systemStartTime;
+         long timeElapsed = System.currentTimeMillis() - systemStartTime; //Time stop
          System.out.println ("Time elapsed (ms): " + timeElapsed);
          
          System.out.println ("Comparisons count: " + opCount + "\n");
@@ -73,8 +73,7 @@ public class LSArrayApp {
          }
       }
       
-      if (!foundFlag) {
+      if (!foundFlag)
          System.out.println ("Areas not found");
-      }
    }
 }
