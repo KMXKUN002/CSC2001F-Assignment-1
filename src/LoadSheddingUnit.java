@@ -2,12 +2,12 @@
 //	25	Feb 2020
 //	Chris	Kim
 
-public class LoadSheddingUnit {
+public class LoadSheddingUnit implements Comparable<LoadSheddingUnit> {
    protected int day;
    protected String parameters;
    protected String areas;
    
-   public LoadSheddingUnit() {
+   public LoadSheddingUnit () {
    }
    
    public LoadSheddingUnit(String raw) {
@@ -24,6 +24,7 @@ public class LoadSheddingUnit {
       return false;
    }
    
+   @Override
    public int compareTo (LoadSheddingUnit unit) {
       if (parameters.equals(unit.getParameters())) {
          return 0;

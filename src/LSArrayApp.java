@@ -5,6 +5,8 @@
 import java.io.*;
 
 public class LSArrayApp {
+   static int opCount = 0;
+
 	public static void main	( String	[]	args ){
       try {
       
@@ -18,10 +20,13 @@ public class LSArrayApp {
          int length = 0;
 
          while ((line = br.readLine()) != null) {
+            opCount++; //instrumentation
+            
             lsArray[length] = new LoadSheddingUnit (line);
             length ++;
          }
          
+         opCount++; //instrumentation
          if (args.length == 0) {
             printAllAreas (lsArray, length);
          }
@@ -34,6 +39,8 @@ public class LSArrayApp {
                System.out.println ("Not enough parameters.");
             }
          }
+         
+         System.out.println ("Comparisons count: " + opCount + "\n");
       }
       catch (IOException e) {
          e.printStackTrace();
@@ -49,6 +56,7 @@ public class LSArrayApp {
    public static void printAreas (LoadSheddingUnit[] array, int length, String parameters) {
       boolean foundFlag = false;
       for (int i = 0; i < length; i++) {
+         opCount += 2; //instrumentation
          if (array[i].matches (parameters)) {
             System.out.println ("Areas " + array[i].getAreas());
             foundFlag = true;
