@@ -3,11 +3,14 @@
 //	Chris	Kim
 
 import java.io.*;
+import java.util.concurrent.TimeUnit;
 
 public class LSArrayApp {
    static int opCount = 0;
 
 	public static void main	( String	[]	args ){
+      long systemStartTime = System.currentTimeMillis();
+   
       try {
       
 		   File file =	new File	("Load_Shedding_All_Areas_Schedule_and_Map.clean.final.txt");
@@ -21,7 +24,7 @@ public class LSArrayApp {
 
          while ((line = br.readLine()) != null) {
             opCount++; //instrumentation
-            
+
             lsArray[length] = new LoadSheddingUnit (line);
             length ++;
          }
@@ -40,7 +43,13 @@ public class LSArrayApp {
             }
          }
          
+         System.out.println ("n = " + length);
+         
+         long timeElapsed = System.currentTimeMillis() - systemStartTime;
+         System.out.println ("Time elapsed (ms): " + timeElapsed);
+         
          System.out.println ("Comparisons count: " + opCount + "\n");
+         
       }
       catch (IOException e) {
          e.printStackTrace();

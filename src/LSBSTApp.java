@@ -3,14 +3,17 @@
 //	Chris	Kim
 
 import java.io.*;
+import java.util.concurrent.TimeUnit;
 
 public class LSBSTApp {
    static int opCount = 0;
    
    public static void main (String[] args) {
+      long systemStartTime = System.currentTimeMillis();
+   
       try {
       
-		   File file =	new File	("Load_Shedding_All_Areas_Schedule_and_Map.clean.final.txt");
+		   File file =	new File	("txt");
 		   FileReader fr = new FileReader (file);
          BufferedReader br = new BufferedReader (fr);
          StringBuffer sb = new StringBuffer();
@@ -47,6 +50,10 @@ public class LSBSTApp {
          }   
                      
          opCount += LSTree.getOpCount();
+         
+         long timeElapsed = System.currentTimeMillis() - systemStartTime;
+         System.out.println ("Time elapsed (ms): " + timeElapsed);
+
          System.out.println ("Comparisons to find: " + LSTree.getFindingOpCount());
          System.out.println ("Comparisons to sort: " + LSTree.getSortingOpCount());
          System.out.println ("Other comparisons: " + opCount + "\n");
