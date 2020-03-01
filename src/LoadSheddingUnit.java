@@ -12,6 +12,7 @@ public class LoadSheddingUnit implements Comparable<LoadSheddingUnit> {
    
    public LoadSheddingUnit(String raw) {
       parameters = raw.substring (0, raw.indexOf(' '));
+      
       day = Integer.parseInt (raw.substring (2, raw.indexOf('_', 2)));
       areas = raw.substring (raw.indexOf(' ') + 1);
    }
